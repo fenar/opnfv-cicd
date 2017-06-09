@@ -28,6 +28,12 @@ Please execute as described below
     nodelabelparameter
     parameterized-trigger
     throttle-concurrents
+    
+ (6) $./03-prepare-jumphost.sh 
+     This script will add necessary components to your JumpHost (ie MaaS/Master-Node)
+     
+ (7) $./04-configure-jumphost-for-jenkins-user.sh
+     This script will create jenkins user with sshkeys setup on JumpHost (ie MaaS/Master-Node)
 
 Date | Author(s):
 (A) 07/9/2017 | Fatih E. NAR
