@@ -8,7 +8,6 @@ NODE="node00vm1ob$obnum"
 
 # deploy node on maas
 maas admin machines allocate name=$NODE
-# NODE_ID=$(maas admin nodes read hostname=$NODE | grep system_id | cut -d'"' -f4 | sed -n 2p)
 NODE_ID=$(maas admin nodes read hostname=$NODE | python -c "import sys, json;print json.load(sys.stdin)[0]['system_id']")
 maas admin machine deploy "$NODE_ID"
 
