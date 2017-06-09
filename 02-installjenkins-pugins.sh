@@ -17,32 +17,24 @@ install_plugins() {
     set -ex
     export DEBIAN_FRONTEND=noninteractive
 
-    while [ ! -z "$(sudo lsof /var/lib/dpkg/lock)" ]
-    do
-        echo "Waiting for dpkg lock..."
-        sleep 3s
-    done
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for apt lock..."
         sleep 3s
     done
 
-    #curl -O https://gist.githubusercontent.com/fenar/2cbfecf435b177edf0ba130ba447927b/raw/3efdfe46cc95fa0e1f95f2b046ee196cad16c146/install_jenkins_plugin.sh && chmod a+x install_jenkins_plugin.sh    
-    curl -O https://gist.githubusercontent.com/fenar/2cbfecf435b177edf0ba130ba447927b/raw/3efdfe46cc95fa0e1f95f2b046ee196cad16c146/install_jenkins_plugin.sh && chmod a+x install_jenkins_plugin.sh
-    sleep 10s
-    ./install_jenkins_plugin.sh -d ./plugins -a description-setter  envinject  build-blocker-plugin  nodelabelparameter  parameterized-trigger  throttle-concurrents
-    while [ ! -z "$(sudo lsof /var/lib/dpkg/lock)" ]
-    do
-        echo "Waiting for dpkg lock..."
-        sleep 3s
-    done
+    curl -O https://gist.githubusercontent.com/hoesler/ed289c9c7f18190b2411e3f2286e23c3/raw/f6da774fe06eaf0e761133618d37968b5a3e5f27/install_jenkins_plugin.sh && chmod a+x install_jenkins_plugin.sh
+    mkdir ./plugins
+    ./install_jenkins_plugin.sh -d ./plugins -a description-setter@1.10  envinject@2.1  build-blocker-plugin@1.7.3  nodelabelparameter@1.7.2  parameterized-trigger@2.33  throttle-concurrents@2.0.1
+
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for apt lock..."
         sleep 3s
     done
+
     sleep 10s
+
     sudo service jenkins restart
 }
 typeset -f | ssh $NODE.maas "$(cat);install_plugins"
