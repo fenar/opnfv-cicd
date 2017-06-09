@@ -34,35 +34,35 @@ install_cicd() {
     set -ex
     export DEBIAN_FRONTEND=noninteractive
 
-    while [  ! -z "$(sudo lsof /var/lib/dpkg/lock)"  || ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
+    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sudo apt-get update
 
-    while [  ! -z "$(sudo lsof /var/lib/dpkg/lock)"  ||  ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
+    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sudo -E apt-get install -y git python openjdk-8-jre 
 
-    while [  ! -z "$(sudo lsof /var/lib/dpkg/lock)"  ||  ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
+    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     curl https://bootstrap.pypa.io/get-pip.py | sudo python
 
-    while [  ! -z "$(sudo lsof /var/lib/dpkg/lock)"  ||  ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
+    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sudo pip install jenkins-job-builder 
 
-    while [  ! -z "$(sudo lsof /var/lib/dpkg/lock)"  ||  ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
+    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
@@ -74,21 +74,21 @@ install_cicd() {
     sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
     sleep 10s
 
-    while [  ! -z "$(sudo lsof /var/lib/dpkg/lock)"  ||  ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
+    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sudo apt-get update
 
-    while [  ! -z "$(sudo lsof /var/lib/dpkg/lock)"  ||  ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
+    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sudo apt-get install -y jenkins bash zip
 
-    while [  ! -z "$(sudo lsof /var/lib/dpkg/lock)"  ||  ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
+    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
