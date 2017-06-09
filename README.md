@@ -4,9 +4,11 @@ Scripts in this folder is to help you automate implementation of CICD Host as de
 Reference: https://wiki.opnfv.org/display/INF/How+to+Setup+CI+to+Run+OPNFV+Deployment+and+Testing
 
 NOTES:
-(1) It is assumed that you have prepared your lab with MaaS & Juju installed on Master Node and your servers are enlisted.
+(*) It is assumed that you have prepared your lab with MaaS & Juju installed on Master Node and your servers are enlisted.
 
-Please execute as described belo
+Please execute as described below
+----
+
 (1) $ ./01-deploy-cicdhost.sh
     This script will allocate a server from your MaaS and deploy Ubuntu OS and later install all tools required.
 
@@ -20,4 +22,4 @@ Please execute as described belo
 
 
 Date | Author(s):
-(1) 07/9/2017 | Fatih E. NAR
+(A) 07/9/2017 | Fatih E. NAR
