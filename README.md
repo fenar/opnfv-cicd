@@ -21,6 +21,13 @@ Please execute as described below
 (4) $./02-installjenkins-pugins.sh
     This script will install required additional plugins on Jenkins.
 
+(5) On Jenkins WebUI Under -> Manage Jenkins -> Manage Plugins -> Make sure Following Plugins are installed:
+    description-setter
+    envinject
+    build-blocker-plugin
+    nodelabelparameter
+    parameterized-trigger
+    throttle-concurrents
 
 Date | Author(s):
 (A) 07/9/2017 | Fatih E. NAR
