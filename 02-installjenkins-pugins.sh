@@ -28,7 +28,8 @@ install_plugins() {
         sleep 3s
     done
 
-    curl -O https://gist.githubusercontent.com/fenar/2cbfecf435b177edf0ba130ba447927b/raw/3efdfe46cc95fa0e1f95f2b046ee196cad16c146/install_jenkins_plugin.sh && chmod a+x install_jenkins_plugin.sh    
+    #curl -O https://gist.githubusercontent.com/fenar/2cbfecf435b177edf0ba130ba447927b/raw/3efdfe46cc95fa0e1f95f2b046ee196cad16c146/install_jenkins_plugin.sh && chmod a+x install_jenkins_plugin.sh    
+    curl -O https://gist.githubusercontent.com/fenar/2cbfecf435b177edf0ba130ba447927b/raw/3efdfe46cc95fa0e1f95f2b046ee196cad16c146/install_jenkins_plugin.sh && chmod a+x install_jenkins_plugin.sh
     sleep 10s
     ./install_jenkins_plugin.sh -d ./plugins -a description-setter  envinject  build-blocker-plugin  nodelabelparameter  parameterized-trigger  throttle-concurrents
     while [ ! -z "$(sudo lsof /var/lib/dpkg/lock)" ]
