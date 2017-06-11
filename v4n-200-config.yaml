@@ -1,0 +1,133 @@
+lab:
+  location: 
+  racks:
+  - rack: v4n-200
+    nodes:
+    - name: node01ob200
+      architecture: x86_64
+      roles: [network,control]
+      nics:
+      - ifname: eth0
+        spaces: [public]
+        mac: ["f4:4d:30:65:a1:78"]
+      - ifname: eth0.100
+        spaces: [admin]
+        mac: ["f4:4d:30:65:a1:78"]
+      - ifname: eth0.101
+        spaces: [data]
+        mac: ["f4:4d:30:65:a1:78"]
+      power:
+        type: amt
+        address: 172.27.200.11
+        user: admin
+        pass: Password1+
+    - name: node02ob200
+      architecture: x86_64
+      roles: [compute,control,storage]
+      nics:
+      - ifname: eth0
+        spaces: [public]
+        mac: ["f4:4d:30:65:a0:64"]
+      - ifname: eth0.100
+        spaces: [admin]
+        mac: ["f4:4d:30:65:a0:64"]
+      - ifname: eth0.101
+        spaces: [data]
+        mac: ["f4:4d:30:65:a0:64"]
+      power:
+        type: amt
+        address: 172.27.200.12
+        user: admin
+        pass: Password1+
+    - name: node03ob200
+      architecture: x86_64
+      roles: [compute,control,storage]
+      nics:
+      - ifname: eth0
+        spaces: [public]
+        mac: ["f4:4d:30:65:a2:62"]
+      - ifname: eth0.100
+        spaces: [admin]
+        mac: ["f4:4d:30:65:a2:62"]
+      - ifname: eth0.101
+        spaces: [data]
+        mac: ["f4:4d:30:65:a2:62"]
+      power:
+        type: amt
+        address: 172.27.200.13
+        user: admin
+        pass: Password1+
+    - name: node04ob200
+      architecture: x86_64
+      roles: [compute,storage]
+      nics:
+      - ifname: eth0
+        spaces: [public]
+        mac: ["f4:4d:30:65:9c:d9"]
+      - ifname: eth0.100
+        spaces: [admin]
+        mac: ["f4:4d:30:65:9c:d9"]
+      - ifname: eth0.101
+        spaces: [data]
+        mac: ["f4:4d:30:65:9c:d9"]
+      power:
+        type: amt
+        address: 172.27.200.14
+        user: admin
+        pass: Password1+
+    - name: node05ob200
+      architecture: x86_64
+      roles: [compute,storage]
+      nics:
+      - ifname: eth0
+        spaces: [public]
+        mac: ["f4:4d:30:65:9e:0d"]
+      - ifname: eth0.100
+        spaces: [admin]
+        mac: ["f4:4d:30:65:9e:0d"]
+      - ifname: eth0.101
+        spaces: [data]
+        mac: ["f4:4d:30:65:9e:0d"]
+      power:
+        type: amt
+        address: 172.27.200.15
+        user: admin
+        pass: Password1+
+    floating-ip-range: 172.27.203.100/24
+    ext-port: "eth1"
+    dns: 8.8.8.8
+    public-api-ip:
+    osdomainname:
+opnfv:
+  release: d
+  distro: xenial
+  type: nonha
+  openstack: newton
+  sdncontroller:
+  - type: nosdn
+  storage:
+  - type: ceph
+    disk: /srv
+  feature: odl_l2
+  spaces:
+  - type: public
+    bridge: brPublic
+    cidr: 172.27.200.0/23
+    gateway: 172.27.201.254
+    vlan:
+  - type: admin
+    bridge: brAdmin
+    cidr: 192.168.100.0/24
+    gateway:
+    vlan: 100
+  - type: data
+    bridge: brData
+    cidr: 172.27.202.0/24
+    gateway:
+    vlan: 101
+  - type: external
+    bridge: brExt
+    cidr: 172.27.202.0/23
+    gateway: 172.27.203.254
+    ipaddress: 172.27.202.1
+    vlan:
