@@ -93,6 +93,11 @@ install_cicd() {
         sleep 3s
     done
     sleep 10s
+
+    #sudo adduser jenkins --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
+    echo "jenkins:jenkins" | sudo chpasswd
+    sudo usermod -aG sudo jenkins
+
     password=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
     echo "Password: $password" 
 }
