@@ -38,6 +38,11 @@ install_cicd() {
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
+    while [ ! -z "$(sudo lsof /var/lib/dpkg/lists/lock)"  ]
+    do
+        echo "Waiting for dpkg/apt lock..."
+        sleep 3s
+    done
     sudo apt-get update
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
