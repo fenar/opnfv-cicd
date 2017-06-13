@@ -1,7 +1,7 @@
 lab:
   location: 
   racks:
-  - rack: v4n-200
+  - rack: v4n200
     nodes:
     - name: node01ob200
       architecture: x86_64
