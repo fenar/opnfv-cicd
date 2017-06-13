@@ -96,13 +96,13 @@ opnfv:
   feature: odl_l2
   spaces:
   - type: admin
-    bridge: brAdm
+    bridge: br0
     cidr: 172.27.200.0/23
     gateway: 172.27.201.254
     ipaddress: 172.27.200.1
     vlan:
   - type: external
-    bridge: brExt
+    bridge: br1
     cidr: 172.27.202.0/23
     ipaddress: 172.27.202.1
     vlan:
