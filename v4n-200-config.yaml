@@ -10,16 +10,11 @@ lab:
       - ifname: eth0
         spaces: [admin]
         mac: ["f4:4d:30:65:a1:78"]
-      - ifname: eth0.100
-        spaces: [compute-data]
-        mac: ["f4:4d:30:65:a1:78"]
-      - ifname: eth0.101
-        spaces: [storage-cluster]
-      - ifname: eth0.102
-        spaces: [storage-data]
+      - ifname: eth0.203
+        spaces: [data]
         mac: ["f4:4d:30:65:a1:78"]
       - ifname: eth1
-        spaces: [public-api]
+        spaces: [floating]
         mac: ["8c:ae:4c:fd:c5:af"]
       power:
         type: amt
@@ -33,17 +28,11 @@ lab:
       - ifname: eth0
         spaces: [admin]
         mac: ["f4:4d:30:65:a0:64"]
-      - ifname: eth0.100
-        spaces: [compute-data]
-        mac: ["f4:4d:30:65:a0:64"]
-      - ifname: eth0.101
-        spaces: [storage-cluster]
-        mac: ["f4:4d:30:65:a0:64"]
-      - ifname: eth0.102
-        spaces: [storage-data]
+      - ifname: eth0.203
+        spaces: [data]
         mac: ["f4:4d:30:65:a0:64"]
       - ifname: eth1
-        spaces: [public-api]
+        spaces: [floating]
         mac: ["8c:ae:4c:fd:c2:47"]
       power:
         type: amt
@@ -57,17 +46,11 @@ lab:
       - ifname: eth0
         spaces: [admin]
         mac: ["f4:4d:30:65:a2:62"]
-      - ifname: eth0.100
-        spaces: [compute-data]
-        mac: ["f4:4d:30:65:a2:62"]
-      - ifname: eth0.101
-        spaces: [storage-cluster]
-        mac: ["f4:4d:30:65:a2:62"]
-      - ifname: eth0.102
-        spaces: [storage-data]
+      - ifname: eth0.203
+        spaces: [data]
         mac: ["f4:4d:30:65:a2:62"]
       - ifname: eth1
-        spaces: [public-api]
+        spaces: [floating]
         mac: ["8c:ae:4c:fd:c5:9e"]
       power:
         type: amt
@@ -81,17 +64,11 @@ lab:
       - ifname: eth0
         spaces: [admin]
         mac: ["f4:4d:30:65:9c:d9"]
-      - ifname: eth0.100
-        spaces: [compute-data]
-        mac: ["f4:4d:30:65:9c:d9"]
-      - ifname: eth0.101
-        spaces: [storage-cluster]
-        mac: ["f4:4d:30:65:9c:d9"]
-      - ifname: eth0.102
-        spaces: [storage-data]
+      - ifname: eth0.203
+        spaces: [data]
         mac: ["f4:4d:30:65:9c:d9"]
       - ifname: eth1
-        spaces: [public-api]
+        spaces: [floating]
         mac: ["8c:ae:4c:fd:ce:b8"]
       power:
         type: amt
@@ -105,17 +82,11 @@ lab:
       - ifname: eth0
         spaces: [admin]
         mac: ["f4:4d:30:65:9e:0d"]
-      - ifname: eth0.100
-        spaces: [compute-data]
-        mac: ["f4:4d:30:65:9e:0d"]
-      - ifname: eth0.101
-        spaces: [storage-cluster]
-        mac: ["f4:4d:30:65:9e:0d"]
-      - ifname: eth0.102
-        spaces: [storage-data]
+      - ifname: eth0.203
+        spaces: [data]
         mac: ["f4:4d:30:65:9e:0d"]
       - ifname: eth1
-        spaces: [public-api]
+        spaces: [floating]
         mac: ["8c:ae:4c:fd:ce:cd"]
       power:
         type: amt
@@ -144,22 +115,12 @@ opnfv:
     cidr: 172.27.200.0/23
     gateway: 172.27.201.254
     vlan:
-  - type: compute-data
-    bridge: br100
+  - type: data
+    bridge: br203
     cidr: 192.168.100.0/24
     gateway:
-    vlan: 100
-  - type: storage-cluster
-    bridge: br101
-    cidr: 192.168.101.0/24
-    gateway:
-    vlan: 101
-  - type: storage-data
-    bridge: br102
-    cidr: 192.168.102.0/24
-    gateway:
-    vlan: 102
-  - type: public-api
+    vlan: 203
+  - type: floating
     bridge: br1
     cidr: 172.27.202.0/23
     gateway: 172.27.203.254
