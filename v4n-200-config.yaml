@@ -1,5 +1,5 @@
 lab:
-  location: 
+  location: verizon 
   racks:
   - rack: v4n-200
     nodes:
@@ -8,14 +8,19 @@ lab:
       roles: [network,control]
       nics:
       - ifname: eth0
-        spaces: [public]
-        mac: ["f4:4d:30:65:a1:78"]
-      - ifname: eth0.100
         spaces: [admin]
         mac: ["f4:4d:30:65:a1:78"]
-      - ifname: eth0.101
-        spaces: [data]
+      - ifname: eth0.100
+        spaces: [compute-data]
         mac: ["f4:4d:30:65:a1:78"]
+      - ifname: eth0.101
+        spaces: [storage-cluster]
+      - ifname: eth0.102
+        spaces: [storage-data]
+        mac: ["f4:4d:30:65:a1:78"]
+      - ifname: eth1
+        spaces: [public-api]
+        mac: ["8c:ae:4c:fd:c5:af"]
       power:
         type: amt
         address: 172.27.200.11
@@ -26,14 +31,20 @@ lab:
       roles: [compute,control,storage]
       nics:
       - ifname: eth0
-        spaces: [public]
-        mac: ["f4:4d:30:65:a0:64"]
-      - ifname: eth0.100
         spaces: [admin]
         mac: ["f4:4d:30:65:a0:64"]
-      - ifname: eth0.101
-        spaces: [data]
+      - ifname: eth0.100
+        spaces: [compute-data]
         mac: ["f4:4d:30:65:a0:64"]
+      - ifname: eth0.101
+        spaces: [storage-cluster]
+        mac: ["f4:4d:30:65:a0:64"]
+      - ifname: eth0.102
+        spaces: [storage-data]
+        mac: ["f4:4d:30:65:a0:64"]
+      - ifname: eth1
+        spaces: [public-api]
+        mac: ["8c:ae:4c:fd:c2:47"]
       power:
         type: amt
         address: 172.27.200.12
@@ -44,14 +55,20 @@ lab:
       roles: [compute,control,storage]
       nics:
       - ifname: eth0
-        spaces: [public]
-        mac: ["f4:4d:30:65:a2:62"]
-      - ifname: eth0.100
         spaces: [admin]
         mac: ["f4:4d:30:65:a2:62"]
-      - ifname: eth0.101
-        spaces: [data]
+      - ifname: eth0.100
+        spaces: [compute-data]
         mac: ["f4:4d:30:65:a2:62"]
+      - ifname: eth0.101
+        spaces: [storage-cluster]
+        mac: ["f4:4d:30:65:a2:62"]
+      - ifname: eth0.102
+        spaces: [storage-data]
+        mac: ["f4:4d:30:65:a2:62"]
+      - ifname: eth1
+        spaces: [public-api]
+        mac: ["8c:ae:4c:fd:c5:9e"]
       power:
         type: amt
         address: 172.27.200.13
@@ -62,14 +79,20 @@ lab:
       roles: [compute,storage]
       nics:
       - ifname: eth0
-        spaces: [public]
-        mac: ["f4:4d:30:65:9c:d9"]
-      - ifname: eth0.100
         spaces: [admin]
         mac: ["f4:4d:30:65:9c:d9"]
-      - ifname: eth0.101
-        spaces: [data]
+      - ifname: eth0.100
+        spaces: [compute-data]
         mac: ["f4:4d:30:65:9c:d9"]
+      - ifname: eth0.101
+        spaces: [storage-cluster]
+        mac: ["f4:4d:30:65:9c:d9"]
+      - ifname: eth0.102
+        spaces: [storage-data]
+        mac: ["f4:4d:30:65:9c:d9"]
+      - ifname: eth1
+        spaces: [public-api]
+        mac: ["8c:ae:4c:fd:ce:b8"]
       power:
         type: amt
         address: 172.27.200.14
@@ -80,20 +103,26 @@ lab:
       roles: [compute,storage]
       nics:
       - ifname: eth0
-        spaces: [public]
-        mac: ["f4:4d:30:65:9e:0d"]
-      - ifname: eth0.100
         spaces: [admin]
         mac: ["f4:4d:30:65:9e:0d"]
-      - ifname: eth0.101
-        spaces: [data]
+      - ifname: eth0.100
+        spaces: [compute-data]
         mac: ["f4:4d:30:65:9e:0d"]
+      - ifname: eth0.101
+        spaces: [storage-cluster]
+        mac: ["f4:4d:30:65:9e:0d"]
+      - ifname: eth0.102
+        spaces: [storage-data]
+        mac: ["f4:4d:30:65:9e:0d"]
+      - ifname: eth1
+        spaces: [public-api]
+        mac: ["8c:ae:4c:fd:ce:cd"]
       power:
         type: amt
         address: 172.27.200.15
         user: admin
         pass: Password1+
-    floating-ip-range: 172.27.203.100/24
+    floating-ip-range: 172.27.203.100 172.27.203.101 172.27.203.102 172.27.203.103 172.27.203.104 172.27.202.0/22
     ext-port: "eth1"
     dns: 8.8.8.8
     public-api-ip:
@@ -110,24 +139,29 @@ opnfv:
     disk: /dev/sdb
   feature: odl_l2
   spaces:
-  - type: public
-    bridge: brPublic
+  - type: admin
+    bridge: br0
     cidr: 172.27.200.0/23
     gateway: 172.27.201.254
     vlan:
-  - type: admin
-    bridge: brAdmin
+  - type: compute-data
+    bridge: br100
     cidr: 192.168.100.0/24
     gateway:
     vlan: 100
-  - type: data
-    bridge: brData
-    cidr: 172.27.202.0/24
+  - type: storage-cluster
+    bridge: br101
+    cidr: 192.168.101.0/24
     gateway:
     vlan: 101
-  - type: external
-    bridge: brExt
+  - type: storage-data
+    bridge: br102
+    cidr: 192.168.102.0/24
+    gateway:
+    vlan: 102
+  - type: public-api
+    bridge: br1
     cidr: 172.27.202.0/23
     gateway: 172.27.203.254
-    ipaddress: 172.27.202.1
+    ipaddress:
     vlan:

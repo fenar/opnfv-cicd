@@ -3,7 +3,7 @@
 set -ex
 
 obnum=`hostname | cut -c 10- -`
-NODE="node00vm1ob$obnum"
+NODE="node00vm0ob$obnum"
 
 
 # deploy node on maas
@@ -49,6 +49,11 @@ install_cicd() {
     do
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
+    done
+    while [ ! -z "$(sudo lsof /var/lib/dpkg/lock)" ]
+    do
+        echo "Waiting for dpkg lock..."
+        sleep 5s
     done
     sudo -E apt-get install -y git python openjdk-8-jre 
 
@@ -105,5 +110,6 @@ install_cicd() {
 
     password=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
     echo "Password: $password" 
+    echo "Plugin-List: description-setter  envinject  build-blocker-plugin  nodelabelparameter  parameterized-trigger  throttle-concurrents"
 }
 typeset -f | ssh $NODE.maas "$(cat);install_cicd"
