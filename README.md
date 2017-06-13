@@ -18,7 +18,7 @@ Please execute as described below
 
 (3) On Jenkin Web UI, Select Default Plugins Install Option (Left Box) and click install.
 
-(4) $./02-installjenkins-pugins.sh
+(4) $./02-installjenkins-pugins.sh [CI/CD-Host]
     This script will install required additional plugins on Jenkins.
 
 (5) On Jenkins WebUI Under -> Manage Jenkins -> Manage Plugins -> Make sure Following Plugins are installed:
@@ -29,11 +29,18 @@ Please execute as described below
     parameterized-trigger
     throttle-concurrents
     
- (6) $./03-prepare-jumphost.sh 
-     This script will add necessary components to your JumpHost (ie MaaS/Master-Node)
+ (6) $./03-prepare-jumphost.sh [Jump-Host]
+     This script will add necessary components to your Jump-Host.
      
- (7) $./04-configure-jumphost-for-jenkins-user.sh
-     This script will create jenkins user with sshkeys setup on JumpHost (ie MaaS/Master-Node)
+ (7) $./04-configure-jumphost-for-jenkins-user.sh [Jump-Host]
+     This script will create jenkins user with sshkeys setup on Jump-Host.
+     
+ (8) $./05-opnfv-jjb-setup-cicd.sh & $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host]
+     This script will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build.
+     
+ (9) $./07-podconfig-jumphost.sh [Jump-Host]
+     This script will setup lab-networking blueprint to be used by OPNFV Jenkins Jobs.
+         
 
 Date | Author(s):
 (A) 07/9/2017 | Fatih E. NAR
