@@ -1,0 +1,7 @@
+#!/bin/bash
+#this file shall be under /home/jenkins/joid_config on JumpHost (ie MaaS)
+export OS_USERNAME=admin
+export OS_PASSWORD=admin
+export OS_TENANT_NAME=admin
+export OS_REGION_NAME=RegionOne
+export OS_AUTH_URL=http://<KeyStoneIPAddr>:5000/v2.0
