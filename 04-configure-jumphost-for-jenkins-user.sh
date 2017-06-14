@@ -16,7 +16,7 @@ cj() {
     mkdir ~/.ssh
     chmod 700 ~/.ssh
     cd ~/.ssh
-    ssh-keygen -t rsa
+    echo "/home/jenkins/.ssh/id_rsa" | ssh-keygen -t rsa
     touch ~/.ssh/authorized_keys
     chmod 600 ~/.ssh/authorized_keys
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
@@ -24,5 +24,5 @@ cj() {
     git config --global user.email "fenar@yahoo.com"
     git config --global user.name "fenar"
 }
-#sshpass -p 'jenkins' ssh jenkins@localhost "$(cat);configure_jumphost"
-sshpass -p 'jenkins' ssh jenkins@localhost "$(typeset -f); cj"
+#sshpass -p 'jenkins' ssh jenkins@localhost "$(cat); cj"
+typeset -f | ssh jenkins@localhost "$(cat);cj"
