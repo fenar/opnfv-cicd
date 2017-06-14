@@ -24,5 +24,4 @@ cj() {
     git config --global user.email "fenar@yahoo.com"
     git config --global user.name "fenar"
 }
-#sshpass -p 'jenkins' ssh jenkins@localhost "$(cat); cj"
 typeset -f | ssh jenkins@localhost "$(cat);cj"
