@@ -110,6 +110,6 @@ install_cicd() {
 
     password=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
     echo "Password: $password" 
-    echo "Plugin-List: description-setter  envinject  build-blocker-plugin  nodelabelparameter  parameterized-trigger  throttle-concurrents"
+    echo "Plugin-List: description-setter  envinject  build-blocker-plugin  nodelabelparameter  parameterized-trigger  throttle-concurrents InfluxDB"
 }
 typeset -f | ssh $NODE.maas "$(cat);install_cicd"
