@@ -101,9 +101,12 @@ install_cicd() {
     #sudo adduser jenkins --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
     echo "jenkins:jenkins" | sudo chpasswd
     sudo usermod -aG sudo jenkins
-
+    sudo grep -q "^[^#]*PasswordAuthentication" /etc/ssh/sshd_config && sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config || echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+    sudo service sshd restart
+    sleep 5s
     password=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
     echo "Password: $password" 
+    
     echo "Plugin-List: description-setter  envinject  build-blocker-plugin  nodelabelparameter  parameterized-trigger  throttle-concurrents InfluxDB"
 }
 typeset -f | ssh $NODE.maas "$(cat);install_cicd" >> jenkins.log 
