@@ -70,6 +70,20 @@ Please execute as described below
                 password=PASSWORD-GOES-HERE
                 url=http://localhost:8080/
                 query_plugins_info=False
+                
+             Create directory /etc/yardstick
+             Create file /etc/yardstick/yardstick.conf, put below lines in it. 
+
+                [DEFAULT]
+                debug = True
+                dispatcher = influxdb
+
+                [dispatcher_influxdb]
+                timeout = 5
+                target = http://localhost:8086
+                db_name = yardstick
+                username = root
+                password = root  
 ```     
 (9) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host] <br>
      These scripts will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build. <br>
