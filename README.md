@@ -27,29 +27,33 @@ Please execute as described below
 (6) $./04-configure-jumphost-for-jenkins-user.sh [Jump-Host]
      This script will create jenkins user with sshkeys setup on Jump-Host.
      
-(7) Manual Step: Connect Jumphost to Jenkins<br>
-            <tab><tab>[Open Jenkins Web Interface]<br>
-            <tab><tab>Click "Credentials" -> "Jenkins in second table" -> "Global Credentials" -> "Add Credentials"<br>
-            <tab><tab>Fill in the boxes<br>
-            <tab><tab>Kind: SSH username with private key<br>
-            <tab><tab>Scope: System (Jenkins and nodes only)<br>
-            <tab><tab>Username: jenkins<br>
-            <tab><tab>Private Key: Enter directly and paste the private key of the jenkins user you created on the jumphost<br>
-            <tab><tab>Description: jenkins on vzw-pod1 jumphost<br>
+(7) Manual Step: 
+```sh
+   Connect Jumphost to Jenkins<br>
+            [Open Jenkins Web Interface]<br>
+            Click "Credentials" -> "Jenkins in second table" -> "Global Credentials" -> "Add Credentials"<br>
+            Fill in the boxes<br>
+            Kind: SSH username with private key<br>
+            Scope: System (Jenkins and nodes only)<br>
+            Username: jenkins<br>
+            Private Key: Enter directly and paste the private key of the jenkins user you created on the jumphost<br>
+            Description: jenkins on vzw-pod1 jumphost<br>
     Go back to Jenkins main page and click "Build Executor Status"<br>
-            <tab><tab>[Click "New Node" and fill in the boxes]<br>
-            <tab><tab>Node Name: vzw-pod1<br>
-            <tab><tab># of executors: 2<br>
-            <tab><tab>Remote root directory: /home/jenkins/slave_root<br>
-            <tab><tab>Labels: joid-baremetal<br>
-            <tab><tab>Launch Method: Launch slave agents via ssh<br>
-            <tab><tab>Host: IP of the jumphost<br>
-            <tab><tab>Credentials: select the credentials you added as "jenkins on vzw-pod1 jumphost"<br>
-            <tab><tab>Host Key Verification Strategy: Non verifying Verification Strategy<br>
-            <tab><tab>Click Save<br>
+            [Click "New Node" and fill in the boxes]<br>
+            Node Name: vzw-pod1<br>
+            # of executors: 2<br>
+            Remote root directory: /home/jenkins/slave_root<br>
+            Labels: joid-baremetal<br>
+            Launch Method: Launch slave agents via ssh<br>
+            Host: IP of the jumphost<br>
+            Credentials: select the credentials you added as "jenkins on vzw-pod1 jumphost"<br>
+            Host Key Verification Strategy: Non verifying Verification Strategy<br>
+            <Click Save<br>
     The node should now be online with 2 executors<br>
-
-(8) Manual Step: Configure and Test Jenkins Job Builder<br>
+```
+(8) Manual Step: 
+```sh
+    Configure and Test Jenkins Job Builder<br>
             [Login to CI host as jenkins]
             Create directory /etc/jenkins_jobs
             Create file /etc/jenkins_jobs/jenkins_jobs.ini, put below lines in it. Don't forget to update the password in it!
@@ -66,15 +70,43 @@ Please execute as described below
                 password=PASSWORD-GOES-HERE
                 url=http://localhost:8080/
                 query_plugins_info=False
+                
+             Create directory /etc/yardstick
+             Create file /etc/yardstick/yardstick.conf, put below lines in it. 
+
+                [DEFAULT]
+                debug = True
+                dispatcher = influxdb
+
+                [dispatcher_influxdb]
+                timeout = 5
+                target = http://localhost:8086
+                db_name = yardstick
+                username = root
+                password = root  
+```     
+(9) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host] <br>
+     These scripts will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build. <br>
+
+(10) Please login to CI host and execute below commands. <br>
+                cd ~/repos/releng/jjb/joid <br>
+                vi joid-daily-jobs.yml <br>
+ 
+                !!!UPDATE THE LINE 142 WHERE THE GIT URL IS SPECIFIED!!!
+                !!!url: 'ssh://<IP OF JUMPHOST>/home/jenkins/repos/{project}'!!!
+ 
+                git add -A .
+                git commit -m 'add vzw config'
+                cd ~/repos/releng/jjb
+                jenkins-jobs update joid/joid-daily-jobs.yml:functest/functest-daily-jobs.yml:yardstick/yardstick-daily-jobs.yml:global/installer-params.yml:global/slave-params.yml
      
-(9) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host]
-     These scripts will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build.
      
-(10) $./07-podconfig-jumphost.sh [Jump-Host]
+(10) $./07-podconfig-jumphost.sh [Jump-Host] <br>
      This script will setup lab-networking blueprint to be used by OPNFV Jenkins Jobs.
      
-(11) $./08-deploy-testresultbackend.sh [CI/CD-Host]
-     These scripts will install InfluxdDB & Grafana to be used within CI/CD Setup.
+(11) $./08-deploy-testresultbackend.sh [CI/CD-Host] <br>
+     These scripts will install InfluxdDB & Grafana to be used within CI/CD Setup. <br>
+```sh
      Once install completed, following steps shall be followed:<br>
      (a) Configure Jenkins to use InfluxDB @ Jenkins WebUI: Manage Jenkins -> Configure System -> new influxdb target<br>
                 # Url: http://localhost:8086/<br>
@@ -82,6 +114,6 @@ Please execute as described below
                 # User: admin<br>
                 # Password: admin<br>
       (b) Configure Grafana to get data from InfluxDB<br>
-
+```
 Date | Author(s):
 (A) 07/9/2017 | Fatih E. NAR
