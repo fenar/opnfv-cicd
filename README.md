@@ -28,25 +28,25 @@ Please execute as described below
      This script will create jenkins user with sshkeys setup on Jump-Host.
      
 (7) Manual Step: Connect Jumphost to Jenkins<br>
-            [Open Jenkins Web Interface]<br>
-            Click "Credentials" -> "Jenkins in second table" -> "Global Credentials" -> "Add Credentials"<br>
-            Fill in the boxes<br>
-            Kind: SSH username with private key<br>
-            Scope: System (Jenkins and nodes only)<br>
-            Username: jenkins<br>
-            Private Key: Enter directly and paste the private key of the jenkins user you created on the jumphost<br>
-            Description: jenkins on vzw-pod1 jumphost<br>
+            <tab><tab>[Open Jenkins Web Interface]<br>
+            <tab><tab>Click "Credentials" -> "Jenkins in second table" -> "Global Credentials" -> "Add Credentials"<br>
+            <tab><tab>Fill in the boxes<br>
+            <tab><tab>Kind: SSH username with private key<br>
+            <tab><tab>Scope: System (Jenkins and nodes only)<br>
+            <tab><tab>Username: jenkins<br>
+            <tab><tab>Private Key: Enter directly and paste the private key of the jenkins user you created on the jumphost<br>
+            <tab><tab>Description: jenkins on vzw-pod1 jumphost<br>
     Go back to Jenkins main page and click "Build Executor Status"<br>
-            [Click "New Node" and fill in the boxes]<br>
-            Node Name: vzw-pod1<br>
-            # of executors: 2<br>
-            Remote root directory: /home/jenkins/slave_root<br>
-            Labels: joid-baremetal<br>
-            Launch Method: Launch slave agents via ssh<br>
-            Host: IP of the jumphost<br>
-            Credentials: select the credentials you added as "jenkins on vzw-pod1 jumphost"<br>
-            Host Key Verification Strategy: Non verifying Verification Strategy<br>
-            Click Save<br>
+            <tab><tab>[Click "New Node" and fill in the boxes]<br>
+            <tab><tab>Node Name: vzw-pod1<br>
+            <tab><tab># of executors: 2<br>
+            <tab><tab>Remote root directory: /home/jenkins/slave_root<br>
+            <tab><tab>Labels: joid-baremetal<br>
+            <tab><tab>Launch Method: Launch slave agents via ssh<br>
+            <tab><tab>Host: IP of the jumphost<br>
+            <tab><tab>Credentials: select the credentials you added as "jenkins on vzw-pod1 jumphost"<br>
+            <tab><tab>Host Key Verification Strategy: Non verifying Verification Strategy<br>
+            <tab><tab>Click Save<br>
     The node should now be online with 2 executors<br>
 
 (8) Manual Step: Configure and Test Jenkins Job Builder<br>
