@@ -39,45 +39,38 @@ install_cicd() {
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
     do
-        echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     while [ ! -z "$(sudo lsof /var/lib/dpkg/lock)" ]
     do
-        echo "Waiting for dpkg lock..."
         sleep 5s
     done
     sudo apt-get update
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
-        echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     while [ ! -z "$(sudo lsof /var/lib/dpkg/lock)" ]
     do
-        echo "Waiting for dpkg lock..."
         sleep 5s
     done
     sudo -E apt-get install -y git python openjdk-8-jre 
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
-        echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     curl https://bootstrap.pypa.io/get-pip.py | sudo python
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
-        echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sudo pip install jenkins-job-builder 
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
-        echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     git config --global user.email "fenar@yahoo.com"
@@ -89,21 +82,18 @@ install_cicd() {
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
-        echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sudo apt-get update
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
-        echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sudo apt-get install -y jenkins bash zip
 
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
     do
-        echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
     sleep 10s
@@ -116,4 +106,4 @@ install_cicd() {
     echo "Password: $password" 
     echo "Plugin-List: description-setter  envinject  build-blocker-plugin  nodelabelparameter  parameterized-trigger  throttle-concurrents InfluxDB"
 }
-typeset -f | ssh $NODE.maas "$(cat);install_cicd"
+typeset -f | ssh $NODE.maas "$(cat);install_cicd" >> jenkins.log 
