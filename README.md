@@ -28,44 +28,44 @@ Please execute as described below
      This script will create jenkins user with sshkeys setup on Jump-Host.
      
 (7) Manual Step: Connect Jumphost to Jenkins<br>
-    Open Jenkins Web Interface<br>
-    Click "Credentials" -> "Jenkins in second table" -> "Global Credentials" -> "Add Credentials"<br>
-    Fill in the boxes<br>
-        Kind: SSH username with private key<br>
-        Scope: System (Jenkins and nodes only)<br>
-        Username: jenkins<br>
-        Private Key: Enter directly and paste the private key of the jenkins user you created on the jumphost<br>
-        Description: jenkins on vzw-pod1 jumphost<br>
+            [Open Jenkins Web Interface]<br>
+            Click "Credentials" -> "Jenkins in second table" -> "Global Credentials" -> "Add Credentials"<br>
+            Fill in the boxes<br>
+            Kind: SSH username with private key<br>
+            Scope: System (Jenkins and nodes only)<br>
+            Username: jenkins<br>
+            Private Key: Enter directly and paste the private key of the jenkins user you created on the jumphost<br>
+            Description: jenkins on vzw-pod1 jumphost<br>
     Go back to Jenkins main page and click "Build Executor Status"<br>
-    Click "New Node" and fill in the boxes<br>
-        Node Name: vzw-pod1<br>
-        # of executors: 2<br>
-        Remote root directory: /home/jenkins/slave_root<br>
-        Labels: joid-baremetal<br>
-        Launch Method: Launch slave agents via ssh<br>
-        Host: IP of the jumphost<br>
-        Credentials: select the credentials you added as "jenkins on vzw-pod1 jumphost"<br>
-        Host Key Verification Strategy: Non verifying Verification Strategy<br>
-        Click Save<br>
+            [Click "New Node" and fill in the boxes]<br>
+            Node Name: vzw-pod1<br>
+            # of executors: 2<br>
+            Remote root directory: /home/jenkins/slave_root<br>
+            Labels: joid-baremetal<br>
+            Launch Method: Launch slave agents via ssh<br>
+            Host: IP of the jumphost<br>
+            Credentials: select the credentials you added as "jenkins on vzw-pod1 jumphost"<br>
+            Host Key Verification Strategy: Non verifying Verification Strategy<br>
+            Click Save<br>
     The node should now be online with 2 executors<br>
 
 (8) Manual Step: Configure and Test Jenkins Job Builder<br>
-    Login to CI host as jenkins
-    Create directory /etc/jenkins_jobs
-    Create file /etc/jenkins_jobs/jenkins_jobs.ini, put below lines in it. Don't forget to update the password in it!
-    (Password is 'API Token' fields from: Jenkins Web Interface -> 'admin' -> 'Configure' -> 'Show API Token')
+            [Login to CI host as jenkins]
+            Create directory /etc/jenkins_jobs
+            Create file /etc/jenkins_jobs/jenkins_jobs.ini, put below lines in it. Don't forget to update the password in it!
+            (Password is 'API Token' fields from: Jenkins Web Interface -> 'admin' -> 'Configure' -> 'Show API Token')
     
-            [job_builder]
-            ignore_cache=False
-            keep_descriptions=False
-            include_path=.:scripts:~/git/
-            recursive=True
- 
-            [jenkins]
-            user=admin
-            password=PASSWORD-GOES-HERE
-            url=http://localhost:8080/
-            query_plugins_info=False
+                [job_builder]
+                ignore_cache=False
+                keep_descriptions=False
+                include_path=.:scripts:~/git/
+                recursive=True
+
+                [jenkins]
+                user=admin
+                password=PASSWORD-GOES-HERE
+                url=http://localhost:8080/
+                query_plugins_info=False
      
 (9) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host]
      These scripts will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build.
@@ -77,10 +77,10 @@ Please execute as described below
      These scripts will install InfluxdDB & Grafana to be used within CI/CD Setup.
      Once install completed, following steps shall be followed:<br>
      (a) Configure Jenkins to use InfluxDB @ Jenkins WebUI: Manage Jenkins -> Configure System -> new influxdb target<br>
-            # Url: http://localhost:8086/<br>
-            # Database: jenkins_data<br>
-            # User: admin<br>
-            # Password: admin<br>
+                # Url: http://localhost:8086/<br>
+                # Database: jenkins_data<br>
+                # User: admin<br>
+                # Password: admin<br>
       (b) Configure Grafana to get data from InfluxDB<br>
 
 Date | Author(s):
