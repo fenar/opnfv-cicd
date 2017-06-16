@@ -25,10 +25,6 @@ install_tools() {
     sleep 10s
     sudo service influxdb start
     sudo systemctl enable influxdb.service
-    influx -execute 'CREATE USER root WITH PASSWORD root WITH ALL PRIVILEGES'
-    influx -execute 'CREATE DATABASE jenkins_data'
-    influx -execute 'CREATE DATABASE yardstick'
-    influx -execute 'SHOW DATABASES'
     sleep 5s
     #install grafana
     echo "deb https://packagecloud.io/grafana/stable/debian/ jessie main" | sudo tee /etc/apt/sources.list.d/grafana.list
@@ -54,5 +50,8 @@ install_tools() {
     # Database: jenkins_data
     # User: admin
     # Password: admin
+    influx -execute 'CREATE DATABASE jenkins_data'
+    influx -execute 'CREATE DATABASE yardstick'
+    influx -execute 'SHOW DATABASES'
 }
 typeset -f | ssh $NODE.maas "$(cat);install_tools"
