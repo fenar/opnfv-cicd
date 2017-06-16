@@ -89,8 +89,8 @@ Please execute as described below
                 timeout = 5
                 target = http://localhost:8086
                 db_name = yardstick
-                username = root
-                password = root  
+                username = admin
+                password = admin  
 ```     
 (9) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host] <br>
      These scripts will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build. <br>
