@@ -3,8 +3,12 @@
 set -ex
 
 obnum=`hostname | cut -c 10- -`
-NODE="node00vm0ob$obnum"
 
+if [ -z "$1" ]; then
+  NODE="node00vm0ob$obnum"
+else 
+  NODE=$1
+fi
 
 # deploy node on maas
 maas admin machines allocate name=$NODE

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 obnum=`hostname | cut -c 10- -`
-NODE="node00vm1ob$obnum"
+NODE="node00vm0ob$obnum"
 # install cicd
 jjb() {
 	mkdir ~/repos && cd ~/repos

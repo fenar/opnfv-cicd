@@ -1,7 +1,8 @@
 #!/bin/bash
 #
 set -ex
-
+email=$1
+name=$2
 
 # configure jumphost for jenkins user
 cj() {
@@ -21,7 +22,7 @@ cj() {
     chmod 600 ~/.ssh/authorized_keys
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
     mkdir ~/slave_root
-    git config --global user.email "fenar@yahoo.com"
-    git config --global user.name "fenar"
+    git config --global user.email $email
+    git config --global user.name $name
 }
 typeset -f | ssh jenkins@localhost "$(cat);cj"

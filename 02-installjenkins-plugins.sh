@@ -3,7 +3,7 @@
 set -ex
 
 obnum=`hostname | cut -c 10- -`
-NODE="node00vm1ob$obnum"
+NODE="node00vm0ob$obnum"
 
 # check if ssh is up
 while ! ssh $NODE.maas echo
