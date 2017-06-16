@@ -35,30 +35,30 @@ Please execute as described below
 (7) Manual Step: 
 ```sh
    Connect Jumphost to Jenkins<br>
-            [Open Jenkins Web Interface]<br>
-            Click "Credentials" -> "Jenkins in second table" -> "Global Credentials" -> "Add Credentials"<br>
-            Fill in the boxes<br>
-            Kind: SSH username with private key<br>
-            Scope: System (Jenkins and nodes only)<br>
-            Username: jenkins<br>
+            [Open Jenkins Web Interface]
+            Click "Credentials" -> "Jenkins in second table" -> "Global Credentials" -> "Add Credentials"
+            Fill in the boxes
+            Kind: SSH username with private key
+            Scope: System (Jenkins and nodes only)
+            Username: jenkins
             Private Key: Enter directly and paste the private key of the jenkins user you created on the jumphost<br>
-            Description: jenkins on vzw-pod1 jumphost<br>
-    Go back to Jenkins main page and click "Build Executor Status"<br>
-            [Click "New Node" and fill in the boxes]<br>
-            Node Name: vzw-pod1<br>
-            # of executors: 2<br>
-            Remote root directory: /home/jenkins/slave_root<br>
-            Labels: joid-baremetal<br>
-            Launch Method: Launch slave agents via ssh<br>
-            Host: IP of the jumphost<br>
-            Credentials: select the credentials you added as "jenkins on vzw-pod1 jumphost"<br>
-            Host Key Verification Strategy: Non verifying Verification Strategy<br>
-            <Click Save<br>
+            Description: jenkins on vzw-pod1 jumphost
+    Go back to Jenkins main page and click "Build Executor Status"
+            [Click "New Node" and fill in the boxes]
+            Node Name: vzw-pod1
+            # of executors: 2
+            Remote root directory: /home/jenkins/slave_root
+            Labels: joid-baremetal
+            Launch Method: Launch slave agents via ssh
+            Host: IP of the jumphost
+            Credentials: select the credentials you added as "jenkins on vzw-pod1 jumphost"
+            Host Key Verification Strategy: Non verifying Verification Strategy
+            Click Save
     The node should now be online with 2 executors<br>
 ```
 (8) Manual Step: 
 ```sh
-    Configure and Test Jenkins Job Builder<br>
+    Configure and Test Jenkins Job Builder
             [Login to CI host as jenkins]
             Create directory /etc/jenkins_jobs
             Create file /etc/jenkins_jobs/jenkins_jobs.ini, put below lines in it. Don't forget to update the password in it!
@@ -112,13 +112,13 @@ Please execute as described below
 (11) $./08-deploy-testresultbackend.sh [CI/CD-Host] <br>
      These scripts will install InfluxdDB & Grafana to be used within CI/CD Setup. <br>
 ```sh
-     Once install completed, following steps shall be followed:<br>
-     (a) Configure Jenkins to use InfluxDB @ Jenkins WebUI: Manage Jenkins -> Configure System -> new influxdb target<br>
-                # Url: http://localhost:8086/<br>
-                # Database: jenkins_data<br>
-                # User: admin<br>
-                # Password: admin<br>
-      (b) Configure Grafana to get data from InfluxDB<br>
+     Once install completed, following steps shall be followed:
+     (a) Configure Jenkins to use InfluxDB @ Jenkins WebUI: Manage Jenkins -> Configure System -> new influxdb target
+                # Url: http://localhost:8086/
+                # Database: jenkins_data
+                # User: admin
+                # Password: admin
+      (b) Configure Grafana to get data from InfluxDB
 ```
 Date | Author(s):
 (A) 07/9/2017 | Fatih E. NAR
