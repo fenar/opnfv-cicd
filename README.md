@@ -20,11 +20,12 @@ Please execute as described below
 (3) On Jenkin Web UI, Select Default Plugins Install Option (Left Box) and click install.
 
 (4) On Jenkins Web UI: <br>
+```sh
     Go to Manage Jenkins -> Manage Plugins -> Select Available Tab <br>
     enter Plugin Name (List of Plugins given at the end of Step-1 as output on console) <br>
     on to Filter/Search Tab on right top. <br>
     After finishing selecting all plugins click on install with restart button.
-    
+ ```   
 (5) $./03-prepare-jumphost.sh [Jump-Host- ie where MaaS runs]
      This script will add necessary components to your Jump-Host.
      
