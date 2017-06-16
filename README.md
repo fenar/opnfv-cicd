@@ -75,13 +75,13 @@ Please execute as described below
      
 (11) $./08-deploy-testresultbackend.sh [CI/CD-Host]
      These scripts will install InfluxdDB & Grafana to be used within CI/CD Setup.
-     Once install completed, following steps shall be followed:
-     (a) Configure Jenkins to use InfluxDB @ Jenkins WebUI: Manage Jenkins -> Configure System -> new influxdb target
-            # Url: http://localhost:8086/
-            # Database: jenkins_data
-            # User: admin
-            # Password: admin
-      (b) Configure Grafana to get data from InfluxDB
+     Once install completed, following steps shall be followed:<br>
+     (a) Configure Jenkins to use InfluxDB @ Jenkins WebUI: Manage Jenkins -> Configure System -> new influxdb target<br>
+            # Url: http://localhost:8086/<br>
+            # Database: jenkins_data<br>
+            # User: admin<br>
+            # Password: admin<br>
+      (b) Configure Grafana to get data from InfluxDB<br>
 
 Date | Author(s):
 (A) 07/9/2017 | Fatih E. NAR
