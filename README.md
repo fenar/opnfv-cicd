@@ -5,7 +5,9 @@ Scripts in this folder is to help you automate implementation of CICD Host as de
 Reference: https://wiki.opnfv.org/display/INF/How+to+Setup+CI+to+Run+OPNFV+Deployment+and+Testing
 
 NOTES:
-(*) It is assumed that you have prepared your lab with MaaS & Juju installed on Master Node and your servers are enlisted.
+(*) It is assumed that you have prepared your lab with MaaS & Juju installed on Master Node and your servers are enlisted. <br>
+(**) This setup to be used with Openstack Deployment implemented under fenar/openbaton-oam under git.<br>
+https://github.com/fenar/openbaton-oam
 
 Please execute as described below
 ----
