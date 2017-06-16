@@ -69,6 +69,19 @@ Please execute as described below
      
 (9) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host]
      These scripts will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build.
+
+(10) Please login to CI host and execute below commands. <br>
+                cd ~/repos/releng/jjb/joid <br>
+                vi joid-daily-jobs.yml <br>
+ 
+                !!!UPDATE THE LINE 142 WHERE THE GIT URL IS SPECIFIED!!!
+                !!!url: 'ssh://<IP OF JUMPHOST>/home/jenkins/repos/{project}'!!!
+ 
+                git add -A .
+                git commit -m 'add vzw config'
+                cd ~/repos/releng/jjb
+                jenkins-jobs update joid/joid-daily-jobs.yml:functest/functest-daily-jobs.yml:yardstick/yardstick-daily-jobs.yml:global/installer-params.yml:global/slave-params.yml
+     
      
 (10) $./07-podconfig-jumphost.sh [Jump-Host]
      This script will setup lab-networking blueprint to be used by OPNFV Jenkins Jobs.
