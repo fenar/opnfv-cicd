@@ -112,7 +112,7 @@ Please execute as described below
      This script will setup lab-networking blueprint to be used by OPNFV Jenkins Jobs.
      
 (11) $./08-deploy-testresultbackend.sh [CI/CD-Host] <br>
-     These scripts will install InfluxdDB & Grafana to be used within CI/CD Setup. <br>
+     These scripts will install InfluxdDB & Grafana [http://<CICD-HOST>:3000 admin/admin] to be used within CI/CD Setup. <br>
 ```sh
      Once install completed, following steps shall be followed:
      (a) Configure Jenkins to use InfluxDB @ Jenkins WebUI: Manage Jenkins -> Configure System -> new influxdb target
