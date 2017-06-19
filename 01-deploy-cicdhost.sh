@@ -102,8 +102,9 @@ install_cicd() {
     echo "jenkins:jenkins" | sudo chpasswd
     sudo usermod -aG sudo jenkins
     sudo grep -q "^[^#]*PasswordAuthentication" /etc/ssh/sshd_config && sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config || echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+    #sudo echo 'jenkins ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+    echo 'jenkins ALL=(ALL) NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo
     sudo service sshd restart
-    echo 'jenkins ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
     sleep 5s
     password=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
     echo "Password: $password" 
