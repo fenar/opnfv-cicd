@@ -12,6 +12,8 @@ do
     sleep 10s
 done
 
+scp jenkinsplugin.sh jenkinspluginlist.txt $NODE.maas:./
+
 # install cicd
 install_plugins() {
     set -ex
@@ -23,18 +25,7 @@ install_plugins() {
         sleep 3s
     done
 
-    curl -O https://gist.githubusercontent.com/hoesler/ed289c9c7f18190b2411e3f2286e23c3/raw/f6da774fe06eaf0e761133618d37968b5a3e5f27/install_jenkins_plugin.sh && chmod a+x install_jenkins_plugin.sh
-    # curl -O https://gist.githubusercontent.com/micw/e80d739c6099078ce0f3/raw/33a21226b9938382c1a6aa68bc71105a774b374b/install_jenkins_plugin.sh && chmod a+x install_jenkins_plugins.sh
-    #mkdir ./plugins
-    sudo ./install_jenkins_plugin.sh -a description-setter@1.10  envinject@2.1  build-blocker-plugin@1.7.3  nodelabelparameter@1.7.2  parameterized-trigger@2.33  throttle-concurrents@2.0.1
-    # cd /home/ubuntu/plugins && sudo cp -R * /var/lib/jenkins/plugins
-    while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)" ]
-    do
-        echo "Waiting for apt lock..."
-        sleep 3s
-    done
-
-    sleep 10s
+    sudo ./jenkinsplugin.sh --plugins jenkinspluginlist.txt --plugindir /var/lib/jenkins/plugins
 
     sudo service jenkins restart
 }

@@ -75,12 +75,6 @@ fetch_plugin()
   
     OPTIONALP=`cat $PLUGIN_TEMPDIR/update-center.json | python -c "import sys, json; print json.load(sys.stdin)[\"plugins\"][\"$FPLUGIN\"][\"dependencies\"][$DEP_LOOP][\"optional\"]" 2>/dev/null|| true`
   
-    # Don't fetch optional dependencies
-    if [ "$OPTIONALP" = "True" ]; then
-    echo "$DEPENDENCY plugin is optional, it won't be included"
-    continue;
-    fi
-  
     fetch_plugin $DEPENDENCY
   done
   fi
@@ -205,4 +199,3 @@ main() {
 }
 
 main
-
