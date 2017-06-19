@@ -1,0 +1,9 @@
+pipeline
+timestamper
+description-setter  
+envinject  
+build-blocker-plugin  
+nodelabelparameter  
+parameterized-trigger  
+throttle-concurrents 
+InfluxDB
