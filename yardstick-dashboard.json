@@ -44,7 +44,7 @@
   "hideControls": false,
   "id": null,
   "links": [],
-  "refresh": "1h",
+  "refresh": "5s",
   "rows": [
     {
       "collapse": false,
@@ -5937,7 +5937,7 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "2017-06-19T17:20:00.000Z",
     "to": "now"
   },
   "timepicker": {
@@ -5968,5 +5968,5 @@
   },
   "timezone": "browser",
   "title": "OPNFV-PERFORMANCE-TESTRESULTS",
-  "version": 1
+  "version": 4
 }
