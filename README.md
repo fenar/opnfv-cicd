@@ -26,7 +26,7 @@ Please execute as described below
 (4) $./03-prepare-jumphost.sh [Jump-Host- ie where MaaS runs] <br>
      This script will add necessary components to your Jump-Host (MaaS).
      
-(5) $./04-configure-jumphost-for-jenkins-user.sh [Jump-Host]
+(5) $./04-configure-jumphost-for-jenkins-user.sh [Jump-Host] <br>
      This script will create jenkins user with sshkeys setup on Jump-Host (MaaS).
      
 (6) Manual Step: 
