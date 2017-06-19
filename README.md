@@ -19,7 +19,7 @@ Please execute as described below
     <passwd*> would be printed at the end of script execution.
     Please save this password for later use!
   
-(3) $ ./02-installjenkins-plugins.sh
+(3) $ ./02-installjenkins-plugins.sh <br>
      This script will install all required jenkins plugins for CI/CD.
 
 (4) On Jenkins Web UI: <br>
