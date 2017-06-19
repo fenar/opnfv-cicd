@@ -9,6 +9,7 @@ NODE="node00vm0ob$obnum"
 install_tools() {
     curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
     source /etc/lsb-release
+    sudo -S true
     echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
     sudo apt-get update
     while [ ! -z "$(sudo lsof /var/lib/apt/lists/lock)"  ]
@@ -54,4 +55,4 @@ install_tools() {
     influx -execute 'CREATE DATABASE yardstick'
     influx -execute 'SHOW DATABASES'
 }
-typeset -f | ssh $NODE.maas "$(cat);install_tools"
+typeset -f | ssh jenkins@$NODE.maas "$(cat);install_tools"
