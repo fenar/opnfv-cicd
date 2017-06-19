@@ -12,7 +12,7 @@ do
     sleep 10s
 done
 
-scp jenkinsplugin.sh jenkinspluginlist.txt $NODE.maas:./
+scp jenkinsplugin.sh jenkinspluginlist.txt jenkins_jobs.ini yardstick.conf $NODE.maas:./
 
 # install cicd
 install_plugins() {
@@ -24,9 +24,12 @@ install_plugins() {
         echo "Waiting for apt lock..."
         sleep 3s
     done
-
+    sudo mkdir /etc/jenkins_jobs
+    sudo mv jenkins_jobs.ini /etc/jenkins_jobs/
+    echo "Please Update Admin API Key in /etc/jenkins_jobs/jenkins_jobs.ini!!!"
+    sudo mkdir /etc/yardstick
+    sudo mv yardstick.conf /etc/yardstick/
     sudo ./jenkinsplugin.sh --plugins jenkinspluginlist.txt --plugindir /var/lib/jenkins/plugins
-
     sudo service jenkins restart
 }
 typeset -f | ssh $NODE.maas "$(cat);install_plugins"
