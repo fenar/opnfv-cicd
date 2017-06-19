@@ -12,11 +12,11 @@ https://github.com/fenar/openbaton-oam
 Please execute as described below
 ----
 
-(1) $ ./01-deploy-cicdhost.sh
+(1) $ ./01-deploy-cicdhost.sh <br>
     This script will allocate a server from your MaaS and deploy Ubuntu OS and later install all tools required.
 
-(2) Login to your Jenkins Web Portal http://ip:8080 with admin/<passwd*>
-    <passwd*> would be printed at the end of script execution.
+(2) Login to your Jenkins Web Portal http://ip:8080 with admin/<password*> <br>
+    <password*> would be printed at the end of script execution. <br>
     Please save this password for later use!
   
 (3) $ ./02-installjenkins-plugins.sh <br>
