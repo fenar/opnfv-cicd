@@ -14,13 +14,13 @@ Please execute as described below
 
 (1) $ ./01-deploy-cicdhost.sh
     This script will allocate a server from your MaaS and deploy Ubuntu OS and later install all tools required.
-    
-(2) $ ./02-installjenkins-plugins.sh
-     This script will install all required jenkins plugins for CI/CD.
 
-(3) Login to your Jenkins Web Portal http://ip:8080 with admin/<passwd*>
+(2) Login to your Jenkins Web Portal http://ip:8080 with admin/<passwd*>
     <passwd*> would be printed at the end of script execution.
     Please save this password for later use!
+  
+(3) $ ./02-installjenkins-plugins.sh
+     This script will install all required jenkins plugins for CI/CD.
 
 (4) On Jenkins Web UI: <br>
 ```sh
