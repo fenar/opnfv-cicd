@@ -57,37 +57,9 @@ Please execute as described below
 ```sh
    Configure and Test Jenkins Job Builder
    [Login to CI host as jenkins]
-   -> Create directory /etc/jenkins_jobs
-   -> Create file /etc/jenkins_jobs/jenkins_jobs.ini, 
-      put below lines in it and do not forget to update the password in it!
+   -> Update /etc/jenkins_jobs/jenkins_jobs.ini, 
       (Password is 'API Token' fields from: Jenkins Web Interface -> 'admin' -> 'Configure' -> 'Show API Token')
     
-[job_builder]
-ignore_cache=False
-keep_descriptions=False
-include_path=.:scripts:~/git/
-recursive=True
-
-[jenkins]
-user=admin
-password=PASSWORD-GOES-HERE
-url=http://localhost:8080/
-query_plugins_info=False
-                
-   -> Create directory /etc/yardstick
-   -> Create file /etc/yardstick/yardstick.conf, put below lines in it. 
-
-[DEFAULT]
-debug = True
-dispatcher = influxdb
-
-[dispatcher_influxdb]
-timeout = 5
-target = http://localhost:8086
-db_name = yardstick
-username = admin
-password = admin  
-
 ```     
 (8) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host] <br>
      These scripts will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build. <br>
