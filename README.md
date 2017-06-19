@@ -23,7 +23,7 @@ Please execute as described below
 (3) $ ./02-installjenkins-plugins.sh <br>
      This script will install all required jenkins plugins for CI/CD Host.
 
-(4) $./03-prepare-jumphost.sh [Jump-Host- ie where MaaS runs]
+(4) $./03-prepare-jumphost.sh [Jump-Host- ie where MaaS runs] <br>
      This script will add necessary components to your Jump-Host (MaaS).
      
 (5) $./04-configure-jumphost-for-jenkins-user.sh [Jump-Host]
