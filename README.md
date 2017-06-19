@@ -14,12 +14,13 @@ Please execute as described below
 
 (1) $ ./01-deploy-cicdhost.sh
     This script will allocate a server from your MaaS and deploy Ubuntu OS and later install all tools required.
+    
+(2) $ ./02-installjenkins-plugins.sh
+     This script will install all required jenkins plugins for CI/CD.
 
-(2) Login to your Jenkins Web Portal http://ip:8080 with admin/<passwd*>
+(3) Login to your Jenkins Web Portal http://ip:8080 with admin/<passwd*>
     <passwd*> would be printed at the end of script execution.
     Please save this password for later use!
-    
-(3) On Jenkin Web UI, Select Default Plugins Install Option (Left Box) and click install.
 
 (4) On Jenkins Web UI: <br>
 ```sh
@@ -60,42 +61,43 @@ Please execute as described below
 ```
 (8) Manual Step: 
 ```sh
-    Configure and Test Jenkins Job Builder
-            [Login to CI host as jenkins]
-            Create directory /etc/jenkins_jobs
-            Create file /etc/jenkins_jobs/jenkins_jobs.ini, put below lines in it. Don't forget to update the password in it!
-            (Password is 'API Token' fields from: Jenkins Web Interface -> 'admin' -> 'Configure' -> 'Show API Token')
+Configure and Test Jenkins Job Builder
+[Login to CI host as jenkins]
+Create directory /etc/jenkins_jobs
+Create file /etc/jenkins_jobs/jenkins_jobs.ini, put below lines in it. Don't forget to update the password in it!
+(Password is 'API Token' fields from: Jenkins Web Interface -> 'admin' -> 'Configure' -> 'Show API Token')
     
-                [job_builder]
-                ignore_cache=False
-                keep_descriptions=False
-                include_path=.:scripts:~/git/
-                recursive=True
+[job_builder]
+ignore_cache=False
+keep_descriptions=False
+include_path=.:scripts:~/git/
+recursive=True
 
-                [jenkins]
-                user=admin
-                password=PASSWORD-GOES-HERE
-                url=http://localhost:8080/
-                query_plugins_info=False
+[jenkins]
+user=admin
+password=PASSWORD-GOES-HERE
+url=http://localhost:8080/
+query_plugins_info=False
                 
-             Create directory /etc/yardstick
-             Create file /etc/yardstick/yardstick.conf, put below lines in it. 
+Create directory /etc/yardstick
+Create file /etc/yardstick/yardstick.conf, put below lines in it. 
 
-                [DEFAULT]
-                debug = True
-                dispatcher = influxdb
+[DEFAULT]
+debug = True
+dispatcher = influxdb
 
-                [dispatcher_influxdb]
-                timeout = 5
-                target = http://localhost:8086
-                db_name = yardstick
-                username = admin
-                password = admin  
+[dispatcher_influxdb]
+timeout = 5
+target = http://localhost:8086
+db_name = yardstick
+username = admin
+password = admin  
+
 ```     
-(9) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host] <br>
+(10) $./05-opnfv-jjb-setup-cicd.sh && $./06-opnfv-releng-setup-cicd.sh [CI/CD-Host] <br>
      These scripts will fetch RelEng Job from OPNFV Git Repo and checkout for local jenkins job build. <br>
 
-(10) Please login to CI host and execute below commands. <br>
+(11) Please login to CI host and execute below commands. <br>
                 cd ~/repos/releng/jjb/joid <br>
                 vi joid-daily-jobs.yml <br>
  
@@ -108,10 +110,10 @@ Please execute as described below
                 jenkins-jobs update joid/joid-daily-jobs.yml:functest/functest-daily-jobs.yml:yardstick/yardstick-daily-jobs.yml:global/installer-params.yml:global/slave-params.yml
      
      
-(10) $./07-podconfig-jumphost.sh [Jump-Host] <br>
+(12) $./07-podconfig-jumphost.sh [Jump-Host] <br>
      This script will setup lab-networking blueprint to be used by OPNFV Jenkins Jobs.
      
-(11) $./08-deploy-testresultbackend.sh [CI/CD-Host] <br>
+(13) $./08-deploy-testresultbackend.sh [CI/CD-Host] <br>
      These scripts will install InfluxdDB & Grafana [http://<CICD-HOST>:3000 admin/admin] to be used within CI/CD Setup. <br>
 ```sh
      Once install completed, following steps shall be followed:
