@@ -51,7 +51,7 @@ install_tools() {
     # Database: jenkins_data
     # User: admin
     # Password: admin
-    influx -execute 'CREATE DATABASE jenkins_data'
+    influx -execute 'CREATE DATABASE functest'
     influx -execute 'CREATE DATABASE yardstick'
     influx -execute 'SHOW DATABASES'
 }
