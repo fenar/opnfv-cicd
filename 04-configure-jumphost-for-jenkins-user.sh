@@ -26,5 +26,6 @@ cj() {
     git config --global user.email $email
     git config --global user.name $name
     sudo usermod -aG docker jenkins
+    echo 'jenkins ALL=(ALL) NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo
 }
 typeset -f | ssh jenkins@localhost "$(cat);cj"
