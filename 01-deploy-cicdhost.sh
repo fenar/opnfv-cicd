@@ -4,6 +4,10 @@ set -ex
 
 obnum=`hostname | cut -c 10- -`
 
+if [ -z "/home/ubuntu/.ssh/known_hosts" ]; then
+  sudo rm /home/ubuntu/.ssh/known_hosts
+fi
+
 if [ -z "$1" ]; then
   NODE="node00vm0ob$obnum"
 else 

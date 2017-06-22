@@ -24,5 +24,6 @@ cj() {
     mkdir ~/slave_root
     git config --global user.email $email
     git config --global user.name $name
+    sudo usermod -aG docker jenkins
 }
 typeset -f | ssh jenkins@localhost "$(cat);cj"
