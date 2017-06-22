@@ -14,6 +14,7 @@ cj() {
         echo "Waiting for dpkg/apt lock..."
         sleep 3s
     done
+    mkdir joid_config
     mkdir ~/.ssh
     chmod 700 ~/.ssh
     cd ~/.ssh
