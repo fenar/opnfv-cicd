@@ -1,5 +1,6 @@
 #!/bin/bash
-#
+# Author: Fatih E. NAR
+# 
 set -ex
 export DEBIAN_FRONTEND=noninteractive
 sudo adduser jenkins --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
