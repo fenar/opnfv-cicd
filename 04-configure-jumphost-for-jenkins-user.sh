@@ -1,5 +1,6 @@
 #!/bin/bash
-#
+# Author: Fatih E. NAR
+# 
 set -ex
 email=$1
 name=$2
