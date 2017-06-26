@@ -1,5 +1,6 @@
 #!/bin/bash
-#
+# Author: Fatih E. NAR
+# 
 set -ex
 
 obnum=`hostname | cut -c 10- -`
