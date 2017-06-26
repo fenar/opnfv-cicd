@@ -1,5 +1,6 @@
 #!/bin/bash
-#
+# Author: Fatih E. NAR
+# 
 obnum=`hostname | cut -c 10- -`
 mkdir ~/repos && cd ~/repos
 git clone https://gerrit.opnfv.org/gerrit/joid.git && cd joid
