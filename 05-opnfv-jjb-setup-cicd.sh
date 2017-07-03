@@ -1,4 +1,4 @@
-#!/bin/bash/
+#!/bin/bash
 # Author: Fatih E. NAR
 # 
 obnum=`hostname | cut -c 10- -`
