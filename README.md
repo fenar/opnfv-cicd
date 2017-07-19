@@ -77,11 +77,8 @@ Please execute as described below
     jenkins-jobs update joid/joid-daily-jobs.yml:functest/functest-daily-jobs.yml:yardstick/yardstick-daily-jobs.yml:global/installer-params.yml:global/slave-params.yml
  
 ```    
-     
-(10) $./07-podconfig-jumphost.sh [Jump-Host] <br>
-     This script will setup lab-networking blueprint to be used by OPNFV Jenkins Jobs.
-     
-(11) $./08-deploy-testresultbackend.sh [CI/CD-Host] <br>
+         
+(10) $./07-deploy-testresultbackend.sh [CI/CD-Host] <br>
      These scripts will install InfluxdDB & Grafana [http://<CICD-HOST>:3000 admin/admin] to be used within CI/CD Setup. <br>
 ```sh
      Once install completed, following steps shall be followed:
