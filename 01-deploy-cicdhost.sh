@@ -1,8 +1,12 @@
 #!/bin/bash
+# OPNFV CI/CD Machine Builder Part-I
 # Author: Fatih E. NAR
-# 
+# Ref: https://wiki.opnfv.org/display/INF/How+to+Setup+CI+to+Run+OPNFV+Deployment+and+Testing
+#
 set -ex
-
+username="name"
+useremail="name@email.com"
+"
 obnum=`hostname | cut -c 10- -`
 
 if [ -f "/home/ubuntu/.ssh/known_hosts" ]; then
@@ -78,8 +82,8 @@ install_cicd() {
     do
         sleep 3s
     done
-    git config --global user.email "fenar@yahoo.com"
-    git config --global user.name "fenar"
+    git config --global user.email $useremail
+    git config --global user.name $username
     wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
     sleep 10s
     sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'

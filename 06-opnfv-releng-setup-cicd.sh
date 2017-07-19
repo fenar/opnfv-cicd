@@ -1,6 +1,8 @@
 #!/bin/bash
+# OPNFV CI/CD Machine Builder Part-VI
 # Author: Fatih E. NAR
-# 
+# Ref: https://wiki.opnfv.org/display/INF/How+to+Setup+CI+to+Run+OPNFV+Deployment+and+Testing
+#
 obnum=`hostname | cut -c 10- -`
 NODE="node00vm0ob$obnum"
 # install cicd

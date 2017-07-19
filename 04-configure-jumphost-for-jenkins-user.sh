@@ -1,9 +1,11 @@
 #!/bin/bash
+# OPNFV CI/CD Machine Builder Part-IV
 # Author: Fatih E. NAR
-# 
+# Ref: https://wiki.opnfv.org/display/INF/How+to+Setup+CI+to+Run+OPNFV+Deployment+and+Testing
+#
 set -ex
-email=$1
-name=$2
+email="user@email.com"
+name="username"
 
 # configure jumphost for jenkins user
 cj() {

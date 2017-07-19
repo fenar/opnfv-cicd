@@ -1,5 +1,7 @@
 #!/bin/bash
+# OPNFV CI/CD Machine Builder Part-II
 # Author: Fatih E. NAR
+# Ref: https://wiki.opnfv.org/display/INF/How+to+Setup+CI+to+Run+OPNFV+Deployment+and+Testing
 # 
 set -ex
 
