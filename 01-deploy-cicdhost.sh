@@ -6,7 +6,7 @@
 set -ex
 username="name"
 useremail="name@email.com"
-"
+
 obnum=`hostname | cut -c 10- -`
 
 if [ -f "/home/ubuntu/.ssh/known_hosts" ]; then
